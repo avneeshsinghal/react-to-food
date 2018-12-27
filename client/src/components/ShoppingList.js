@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Container, ListGroup, ListGroupItem ,Table, Button, Input } from 'reactstrap';
+import { Container, ListGroup, ListGroupItem ,Table, Button, Input} from 'reactstrap';
 import {CSSTransition,TransitionGroup} from 'react-transition-group';
 import { connect } from 'react-redux';
 import { getMenuItems } from '../actions/menuActions';
@@ -26,7 +26,7 @@ class ShoppingList extends Component {
 
    }
  getReport =()=>{
-    window.location.href = 'http://localhost:5000/api/menu/report';
+    window.location.href = '/api/menu/report';
  }
 
    onDeleteClick = (_id,name,e) => {
@@ -69,14 +69,7 @@ return (
              <td>
              <TransitionGroup className="item-table">
              <CSSTransition key= {_id} timeout={500} classNames="fade">
-                 <Button
-                 className="remove-btn"
-                 color="success"
-                 size="sm"
-                 onClick ={(e) =>
-                     this.onDeleteClick(_id,name,e)}
-                 >Update
-                 </Button>
+                 
              </CSSTransition>
          </TransitionGroup>
              </td>
@@ -87,13 +80,7 @@ return (
             </tr>
             </tbody>
       </Table>
-      <Button
-        className="remove-btn-1"
-        color="link"
-        size="sm"
-        onClick={this.getReport}
-        >Get Report
-        </Button>
+     <a href="/api/menu/report"> Get Report</a>
       </Container>
 );
 }
