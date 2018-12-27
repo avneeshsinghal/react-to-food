@@ -25,9 +25,7 @@ class ShoppingList extends Component {
            })
 
    }
- getReport =()=>{
-    window.location.href = '/api/menu/report';
- }
+   
 
    onDeleteClick = (_id,name,e) => {
        this.props.predictItem(_id,this.onCreateItem(name));
@@ -69,7 +67,13 @@ return (
              <td>
              <TransitionGroup className="item-table">
              <CSSTransition key= {_id} timeout={500} classNames="fade">
-                 
+             <Button
+        className="remove-btn-1"
+        color="success"
+        size="sm"
+        onClick={this.getReport}
+        >Update
+        </Button>
              </CSSTransition>
          </TransitionGroup>
              </td>
@@ -80,15 +84,7 @@ return (
             </tr>
             </tbody>
       </Table>
-      <a href="/api/menu/report">
-      <Button
-        className="remove-btn-1"
-        color="link"
-        size="sm"
-        onClick={this.getReport}
-        >Get Report
-        </Button>
-        </a>
+      <a href="/api/menu/report">Get Report</a>
       </Container>
 );
 }
