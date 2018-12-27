@@ -80,7 +80,15 @@ return (
             </tr>
             </tbody>
       </Table>
-     <a href="/api/menu/report"> Get Report</a>
+      <a href="/api/menu/report">
+      <Button
+        className="remove-btn-1"
+        color="link"
+        size="sm"
+        onClick={this.getReport}
+        >Get Report
+        </Button>
+        </a>
       </Container>
 );
 }
