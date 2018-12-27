@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {GET_MENU , DELETE_ITEM} from './types';
+import {GET_MENU , DELETE_ITEM, ADD_MENU} from './types';
 
 
 export const getMenuItems = () => dispatch => {
@@ -22,6 +22,16 @@ export const orderMenuItem = (id, item) => dispatch => {
     axios.put(`/api/items/${id}`)
     .then()
 };
+
+export const addMenuItem = item => dispatch => {
+    
+    axios.post('/api/menu',item)
+    .then(res => dispatch({
+        type: ADD_MENU,
+        payload: res.data
+    }))
+};
+
 
 export const predictItem = (id, item) => dispatch => {
 

@@ -25,7 +25,6 @@ class ShoppingList extends Component {
            })
 
    }
-   
 
    onDeleteClick = (_id,name,e) => {
        this.props.predictItem(_id,this.onCreateItem(name));
@@ -71,7 +70,7 @@ return (
         className="remove-btn-1"
         color="success"
         size="sm"
-        onClick={this.getReport}
+        onClick={(e)=>this.onDeleteClick(_id,name)}
         >Update
         </Button>
              </CSSTransition>

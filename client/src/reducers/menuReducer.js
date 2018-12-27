@@ -1,4 +1,4 @@
-import {GET_MENU,EDIT_MENUITEM} from '../actions/types';
+import {GET_MENU,EDIT_MENUITEM,ADD_MENU} from '../actions/types';
 
 const initialState = {
     menuitems:[],
@@ -16,6 +16,11 @@ export default function(state=initialState, action) {
         return {
             ...state,
             items: state.items.filter(items => items._id !==action.payload)
+        }
+        case ADD_MENU:
+        return {
+            ...state,
+            menuitems: [action.payload, ...state.menuitems]
         }
         default:
         return state;

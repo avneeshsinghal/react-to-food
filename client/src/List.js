@@ -16,6 +16,7 @@ class List extends Component {
        <AppNavbar />
        <Container>
          <ShoppingList/>
+         <ItemModal/>
          </Container>
       </div>
       </Provider>

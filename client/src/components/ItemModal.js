@@ -11,7 +11,7 @@ import {
 } from 'reactstrap';
 
 import { connect } from 'react-redux';
-import { addItem } from '../actions/itemActions';
+import { addMenuItem } from '../actions/menuActions';
 class ItemModal extends Component {
     state = {
         modal:false,
@@ -34,9 +34,11 @@ class ItemModal extends Component {
         e.preventDefault();
         const newItem = {
             name: this.state.name,
-            quantity: this.state.quantity
+            predicted: this.state.predicted,
+            created_till_now: 0,
+            price: this.state.price
         }
-        this.props.addItem(newItem);
+        this.props.addMenuItem(newItem);
 
         this.toggle();
     }
@@ -49,7 +51,6 @@ class ItemModal extends Component {
                style={{marginBottom: '2rem'}}
                onClick={this.toggle}
                >Add Item
-
                    </Button>
                    <Modal
                    isOpen={this.state.modal}
@@ -68,14 +69,21 @@ class ItemModal extends Component {
                                type="text"
                                name="name"
                                id="item"
-                               placeHolder="Add shopping item"
+                               placeHolder="Name"
                                onChange={this.onChange}
                                />
                                <Input
                                type="number"
-                               name="quantity"
-                               id="quantity"
-                               placeHolder="How many such Items"
+                               name="predicted"
+                               id="predicted"
+                               placeHolder="Predicted"
+                               onChange={this.onChange}
+                               />
+                               <Input
+                               type="number"
+                               name="price"
+                               id="price"
+                               placeHolder="Price"
                                onChange={this.onChange}
                                />
                                <Button
@@ -97,4 +105,4 @@ const mapStateToProps = state => ({
     item: state.item
 });
 
-export default connect(mapStateToProps,{addItem})(ItemModal);
+export default connect(mapStateToProps,{addMenuItem})(ItemModal);
