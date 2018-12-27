@@ -39,6 +39,7 @@ class ItemModal extends Component {
             price: this.state.price
         }
         this.props.addMenuItem(newItem);
+        window.location.reload();
 
         this.toggle();
     }

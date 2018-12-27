@@ -1,17 +1,31 @@
 import React, { Component } from 'react';
 import {Table} from 'reactstrap';
 import PropTypes from 'prop-types';
-import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
+import { Container, Button } from 'reactstrap';
 import {CSSTransition,TransitionGroup} from 'react-transition-group';
-
+import Pusher from 'pusher-js'; 
 import { connect } from 'react-redux';
 import { getItems } from '../actions/itemActions';
-import { orderMenuItem } from '../actions/menuActions';
+import { orderMenuItem,getMenuItems } from '../actions/menuActions';
+import _ from 'lodash';
 
 class ItemTable extends Component {
 
-    componentDidMount(){
+    componentDidMount(prevProps){
         this.props.getItems();
+        this.props.getMenuItems();
+        const pusher = new Pusher('49ba1a5457b98b0fb905', {
+            cluster: 'ap2',
+            encrypted: true
+          });
+          const channel = pusher.subscribe('my-channel');
+          channel.bind('my-event', data => {
+            this.props.item.items = [...this.props.item.items,data];
+            window.location.reload();    
+          });
+          channel.bind('reload', data => {
+            window.location.reload();    
+          });
     }
 
     onCreateItem = (name,quantity,created_till_now) => {
@@ -25,11 +39,22 @@ class ItemTable extends Component {
 
     onDeleteClick = (_id,name,quantity,created_till_now,e) => {
         this.props.orderMenuItem(_id,this.onCreateItem(name,quantity,created_till_now));
+        window.location.reload();
     }
+toFind = (items,menuitems) =>{
+    var final_items =[];
 
+    for(var item in items){
+        final_items.push(_.assign(items[item],_.pick(_.find(menuitems,['name',items[item].name]),['created_till_now','predicted'])));
+    }
+    // console.log(final_items);
+    return (final_items);
+}
 
   render() {
     const {items} = this.props.item;
+    const {menuitems} = this.props.menuitem;
+    const final_items = this.toFind(items,menuitems);
     var i=1;
     return (
         <Container>
@@ -46,7 +71,7 @@ class ItemTable extends Component {
            </tr>
         </thead>
         <tbody>
-        {items.map((
+        {final_items.map((
             {
                 name,
                 quantity,
@@ -92,11 +117,13 @@ class ItemTable extends Component {
 ItemTable.propTypes = {
     getItems: PropTypes.func.isRequired,
     orderMenuItem: PropTypes.func.isRequired,
-    item: PropTypes.object.isRequired
+    item: PropTypes.object.isRequired,
+    menuitem: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
-    item: state.item
+    item: state.item,
+    menuitem: state.menuitem
 })
 export default connect(mapStateToProps,
-    { getItems, orderMenuItem })(ItemTable);
+    { getItems, orderMenuItem,getMenuItems })(ItemTable);

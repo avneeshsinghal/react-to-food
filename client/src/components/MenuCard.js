@@ -1,7 +1,8 @@
 import React,{Component} from 'react';
-import { Card, CardText, CardBody,Input,
+import { Card, CardBody,Input,
   CardTitle, CardSubtitle, Button, ListGroup, ListGroupItem } from 'reactstrap';
   import { connect } from 'react-redux';
+import Pusher from 'pusher-js'; 
 import { addItem } from '../actions/itemActions';
 import { getMenuItems } from '../actions/menuActions';
 
@@ -11,6 +12,15 @@ import { getMenuItems } from '../actions/menuActions';
 class MenuCard extends Component {
   componentDidMount(){
     this.props.getMenuItems();
+    const pusher = new Pusher('49ba1a5457b98b0fb905', {
+      cluster: 'ap2',
+      encrypted: true
+    });
+    const channel = pusher.subscribe('my-channel');
+    channel.bind('mainPage', data => {
+      this.props.menuitem.menuitems = [...this.props.menuitem.menuitems,data];
+      window.location.reload();    
+    });
 }
 
 onChange = (e) => {

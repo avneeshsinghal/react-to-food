@@ -3,6 +3,17 @@ const router = express.Router();
 const Menu = require('../../models/Menu');
 const json2xls = require('json2xls');
 const fs = require('fs');
+var Pusher = require('pusher');
+
+var pusher = new Pusher({
+  appId: '680305',
+  key: '49ba1a5457b98b0fb905',
+  secret: 'e0a257ece921ef23df0b',
+  cluster: 'ap2',
+  encrypted: true
+});
+
+
 router.use(json2xls.middleware);
 
 router.get('/', (req,res) => {
@@ -25,8 +36,10 @@ router.get('/report', (req,res) => {
 });
 
 router.post('/', (req,res) => {
-    const newItem = new Item(req.body);
-    newItem.save().then(item => res.json(item));
+    const newItem = new Menu(req.body);
+    newItem.save()
+    .then(()=>pusher.trigger('my-channel', 'mainPage', {newItem}))
+    .then(item => res.json(item));
 });
 
 router.put('/', (req,res) => {
@@ -46,6 +59,7 @@ router.put('/predict', (req,res) => {
         }
     Menu.findOne({name:req.body.name})
     .then(menu => menu.updateOne(newItem)
+    .then(()=>  pusher.trigger('my-channel', 'reload',{}))
     .then( () => res.json({success:true})))
     .catch(err => res.status(404).json({success:false}))
 });
