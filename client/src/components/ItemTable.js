@@ -26,6 +26,8 @@ class ItemTable extends Component {
           });
           channel.bind('reload', data => {
             this.props.getMenuItems();
+            this.props.item.items = this.props.item.items.filter(item => item._id !==data.item._id);
+            console.log(data);
             this.setState({ state: this.state });
           });
     }
@@ -41,7 +43,7 @@ class ItemTable extends Component {
 
     onDeleteClick = (_id,name,quantity,created_till_now,e) => {
         this.props.orderMenuItem(_id,this.onCreateItem(name,quantity,created_till_now));
-        this.setState({ state: this.state });
+        // this.setState({ state: this.state });
     }
 toFind = (items,menuitems) =>{
     var final_items =[];
@@ -55,7 +57,6 @@ toFind = (items,menuitems) =>{
 
   render() {
     const {items} = this.props.item;
-    console.log(items);
     const {menuitems} = this.props.menuitem;
     const final_items = this.toFind(items,menuitems);
     var i=1;
