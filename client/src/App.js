@@ -17,7 +17,7 @@ class App extends Component {
       <div className="App">
        <AppNavbar />
        <Container>
-         <ToastContainer/>
+         <ToastContainer autoClose={2000}/>
          <ItemTable/>
          </Container>
       </div>

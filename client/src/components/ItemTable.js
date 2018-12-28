@@ -6,6 +6,7 @@ import {CSSTransition,TransitionGroup} from 'react-transition-group';
 import Pusher from 'pusher-js'; 
 import { connect } from 'react-redux';
 import { getItems } from '../actions/itemActions';
+import {toast} from 'react-toastify';
 import { orderMenuItem,getMenuItems } from '../actions/menuActions';
 import _ from 'lodash';
 
@@ -21,13 +22,13 @@ class ItemTable extends Component {
           const channel = pusher.subscribe('my-channel');
           channel.bind('my-event', data => {
             this.props.item.items = [...this.props.item.items,data.item];
-            // window.location.reload();  
+            toast.warning("Item Added");  
             this.setState({ state: this.state });  
           });
           channel.bind('reload', data => {
             this.props.getMenuItems();
             this.props.item.items = this.props.item.items.filter(item => item._id !==data.item._id);
-            console.log(data);
+            toast.warning("Item Removed");
             this.setState({ state: this.state });
           });
     }

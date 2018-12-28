@@ -20,7 +20,7 @@ export const deleteItem = id => dispatch => {
     .then(res => dispatch({
         type:DELETE_ITEM,
         payload:id
-    })).then(()=>toast('Item Done'))
+    }))
 };
 
 
