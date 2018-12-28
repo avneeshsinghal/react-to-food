@@ -20,11 +20,13 @@ class ItemTable extends Component {
           });
           const channel = pusher.subscribe('my-channel');
           channel.bind('my-event', data => {
-            this.props.item.items = [...this.props.item.items,data];
-            window.location.reload();    
+            this.props.item.items = [...this.props.item.items,data.item];
+            // window.location.reload();  
+            this.setState({ state: this.state });  
           });
           channel.bind('reload', data => {
-            window.location.reload();    
+            this.props.getMenuItems();
+            this.setState({ state: this.state });
           });
     }
 
@@ -39,7 +41,7 @@ class ItemTable extends Component {
 
     onDeleteClick = (_id,name,quantity,created_till_now,e) => {
         this.props.orderMenuItem(_id,this.onCreateItem(name,quantity,created_till_now));
-        window.location.reload();
+        this.setState({ state: this.state });
     }
 toFind = (items,menuitems) =>{
     var final_items =[];
@@ -53,6 +55,7 @@ toFind = (items,menuitems) =>{
 
   render() {
     const {items} = this.props.item;
+    console.log(items);
     const {menuitems} = this.props.menuitem;
     const final_items = this.toFind(items,menuitems);
     var i=1;

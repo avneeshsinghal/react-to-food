@@ -18,8 +18,8 @@ class MenuCard extends Component {
     });
     const channel = pusher.subscribe('my-channel');
     channel.bind('mainPage', data => {
-      this.props.menuitem.menuitems = [...this.props.menuitem.menuitems,data];
-      window.location.reload();    
+      this.props.menuitem.menuitems = [...this.props.menuitem.menuitems,data.newItem];
+     this.setState({state:this.state});   
     });
 }
 
