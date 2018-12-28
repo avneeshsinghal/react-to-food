@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {GET_ITEMS , ADD_ITEM,DELETE_ITEM,ITEMS_LOADING} from './types';
+import {toast} from 'react-toastify';
 
 
 export const getItems = () => dispatch => {
@@ -19,7 +20,7 @@ export const deleteItem = id => dispatch => {
     .then(res => dispatch({
         type:DELETE_ITEM,
         payload:id
-    }))
+    })).then(()=>toast('Item Done'))
 };
 
 
@@ -30,7 +31,7 @@ export const addItem = item => dispatch => {
     .then(res => dispatch({
         type: ADD_ITEM,
         payload: res.data
-    }))
+    })).then(()=> toast.success('Order Placed'))
 };
 
 export const setItemsLoading = item => {

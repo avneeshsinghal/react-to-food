@@ -33,7 +33,9 @@ router.post('/', (req,res) => {
 
 router.put('/:id', (req,res) => {
     Item.findById(req.params.id)
-    .then(item => item.updateOne({done:true}).then( () => res.json({success:true})))
+    .then(item => item.updateOne({done:true})
+    .then(()=>pusher.trigger('my-channel', 'reload', {item}))
+    .then( () => res.json({success:true})))
     .catch(err => res.status(404).json({success:false}));
 });
 

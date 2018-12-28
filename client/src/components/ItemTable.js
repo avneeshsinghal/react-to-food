@@ -58,58 +58,58 @@ toFind = (items,menuitems) =>{
     var i=1;
     return (
         <Container>
-        <Table>
-        <thead>
-           <tr> 
-              <th>#</th>
-              <th>Name</th>
-              <th>Quantity</th>
-              <th>Created Till Now</th>
-              <th>Predicted</th>
-              <th>Date</th>
-              <th>Time</th><th>Done</th>
-           </tr>
-        </thead>
-        <tbody>
-        {final_items.map((
-            {
-                name,
-                quantity,
-                date,
-                _id,
-                created_till_now,
-                predicted
-            }) => (
-           
-           <tr key={_id}>
-             <td>{i++}</td>
-             <td>{name}</td>
-             <td>{quantity}</td>
-             <td>{created_till_now}</td>
-             <td>{predicted}</td>
-             <td>{date.split('T')[0]}</td>
-             <td>
-                 {date.split('T')[1].split('.')[0]}
-             </td>
-             <td>
-             <TransitionGroup className="item-table">
-             <CSSTransition key= {_id} timeout={500} classNames="fade">
-                 <Button
-                 className="remove-btn"
-                 color="danger"
-                 size="sm"
-                 onClick ={(e) =>
-                     this.onDeleteClick(_id,name,quantity,created_till_now,e)}
-                 >Done
-                 </Button>
-             </CSSTransition>
-         </TransitionGroup>
-             </td>
-           </tr>  
-        )
-        )}
-        </tbody>
-      </Table>
+    {<Table>
+    <thead>
+        <tr> 
+            <th>#</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Created Till Now</th>
+            <th>Predicted</th>
+            <th>Date</th>
+            <th>Time</th><th>Done</th>
+        </tr>
+    </thead>
+    <tbody>
+    {final_items.map((
+        {
+            name,
+            quantity,
+            date,
+            _id,
+            created_till_now,
+            predicted
+        }) => (
+        
+        <tr key={_id}>
+            <td>{i++}</td>
+            <td>{name}</td>
+            <td>{quantity}</td>
+            <td>{created_till_now}</td>
+            <td>{predicted}</td>
+            <td>{date.split('T')[0]}</td>
+            <td>
+                {date.split('T')[1].split('.')[0]}
+            </td>
+            <td>
+            <TransitionGroup className="item-table">
+            <CSSTransition key= {_id} timeout={500} classNames="fade">
+                <Button
+                className="remove-btn"
+                color="danger"
+                size="sm"
+                onClick ={(e) =>
+                    this.onDeleteClick(_id,name,quantity,created_till_now,e)}
+                >Done
+                </Button>
+            </CSSTransition>
+        </TransitionGroup>
+            </td>
+        </tr>  
+    )
+    )}
+    </tbody>
+    </Table>}
       </Container>
     );
   }

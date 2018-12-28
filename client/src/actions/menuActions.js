@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {GET_MENU , DELETE_ITEM, ADD_MENU} from './types';
+import {toast} from 'react-toastify';
 
 
 export const getMenuItems = () => dispatch => {
@@ -36,7 +37,8 @@ export const addMenuItem = item => dispatch => {
 export const predictItem = (id, item) => dispatch => {
 
     axios.put(`/api/menu/predict`, item)
-    .then()
+    .then(()=> toast.success('Item Updated'))
+    
 };
 
 
