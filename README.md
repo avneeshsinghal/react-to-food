@@ -1,2 +1,2 @@
 # React-to-food
-Full fledged food menu and Ordering app prepared for in restaurant use, with Real-time Websockets enabled Kitchen Dashboard and Menu.
+Full fledged MERN stack based food menu and Ordering webapp prepared for in restaurant use, with Real-time Websockets enabled Kitchen Dashboard and Menu.
