@@ -15,8 +15,8 @@ class ItemTable extends Component {
     componentDidMount(prevProps){
         this.props.getItems();
         this.props.getMenuItems();
-        const pusher = new Pusher('49ba1a5457b98b0fb905', {
-            cluster: 'ap2',
+        const pusher = new Pusher('API_KEY', {
+            cluster: 'CLUSTER',
             encrypted: true
           });
           const channel = pusher.subscribe('my-channel');

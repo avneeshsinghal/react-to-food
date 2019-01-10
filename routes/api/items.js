@@ -4,10 +4,10 @@ const router = express.Router();
 var Pusher = require('pusher');
 
 var pusher = new Pusher({
-  appId: '680305',
-  key: '49ba1a5457b98b0fb905',
-  secret: 'e0a257ece921ef23df0b',
-  cluster: 'ap2',
+  appId: 'APP_ID',
+  key: 'API_KEY',
+  secret: 'SECRET_KEY',
+  cluster: 'CLUSTER',
   encrypted: true
 });
 
