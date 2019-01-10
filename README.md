@@ -1,2 +1,2 @@
-# react-to-food
-Full Stack Food Dashboard and User app using react and node 
+# React-to-food
+Full fledged food menu and Ordering app prepared for in restaurant use, with Real-time Websockets enabled Kitchen Dashboard and Menu.
