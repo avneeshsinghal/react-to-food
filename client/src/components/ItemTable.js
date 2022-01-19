@@ -3,7 +3,7 @@ import {Table} from 'reactstrap';
 import PropTypes from 'prop-types';
 import { Container, Button } from 'reactstrap';
 import {CSSTransition,TransitionGroup} from 'react-transition-group';
-import Pusher from 'pusher-js'; 
+// import Pusher from 'pusher-js'; 
 import { connect } from 'react-redux';
 import { getItems } from '../actions/itemActions';
 import {toast} from 'react-toastify';
@@ -12,26 +12,26 @@ import _ from 'lodash';
 
 class ItemTable extends Component {
 
-    componentDidMount(prevProps){
-        this.props.getItems();
-        this.props.getMenuItems();
-        const pusher = new Pusher('API_KEY', {
-            cluster: 'CLUSTER',
-            encrypted: true
-          });
-          const channel = pusher.subscribe('my-channel');
-          channel.bind('my-event', data => {
-            this.props.item.items = [...this.props.item.items,data.item];
-            toast.warning("Item Added");  
-            this.setState({ state: this.state });  
-          });
-          channel.bind('reload', data => {
-            this.props.getMenuItems();
-            this.props.item.items = this.props.item.items.filter(item => item._id !==data.item._id);
-            toast.warning("Item Removed");
-            this.setState({ state: this.state });
-          });
-    }
+    // componentDidMount(prevProps){
+    //     this.props.getItems();
+    //     this.props.getMenuItems();
+    //     const pusher = new Pusher('API_KEY', {
+    //         cluster: 'CLUSTER',
+    //         encrypted: true
+    //       });
+    //       const channel = pusher.subscribe('my-channel');
+    //       channel.bind('my-event', data => {
+    //         this.props.item.items = [...this.props.item.items,data.item];
+    //         toast.warning("Item Added");  
+    //         this.setState({ state: this.state });  
+    //       });
+    //       channel.bind('reload', data => {
+    //         this.props.getMenuItems();
+    //         this.props.item.items = this.props.item.items.filter(item => item._id !==data.item._id);
+    //         toast.warning("Item Removed");
+    //         this.setState({ state: this.state });
+    //       });
+    // }
 
     onCreateItem = (name,quantity,created_till_now) => {
          return ({

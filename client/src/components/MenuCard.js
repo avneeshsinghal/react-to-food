@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import { Card, CardBody,Input,
   CardTitle, CardSubtitle, Button, ListGroup, ListGroupItem } from 'reactstrap';
   import { connect } from 'react-redux';
-import Pusher from 'pusher-js'; 
+// import Pusher from 'pusher-js'; 
 import { addItem } from '../actions/itemActions';
 import { getMenuItems } from '../actions/menuActions';
 
@@ -10,18 +10,18 @@ import { getMenuItems } from '../actions/menuActions';
 
 
 class MenuCard extends Component {
-  componentDidMount(){
-    this.props.getMenuItems();
-    const pusher = new Pusher('API_KEY', {
-      cluster: 'CLUSTER',
-      encrypted: true
-    });
-    const channel = pusher.subscribe('my-channel');
-    channel.bind('mainPage', data => {
-      this.props.menuitem.menuitems = [...this.props.menuitem.menuitems,data.newItem];
-     this.setState({state:this.state});   
-    });
-}
+//   componentDidMount(){
+//     this.props.getMenuItems();
+//     const pusher = new Pusher('API_KEY', {
+//       cluster: 'CLUSTER',
+//       encrypted: true
+//     });
+//     const channel = pusher.subscribe('my-channel');
+//     channel.bind('mainPage', data => {
+//       this.props.menuitem.menuitems = [...this.props.menuitem.menuitems,data.newItem];
+//      this.setState({state:this.state});   
+//     });
+// }
 
 onChange = (e) => {
   this.setState({
