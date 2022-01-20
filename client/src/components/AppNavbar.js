@@ -25,19 +25,19 @@ class AppNavbar extends Component{
         return (<div>
             <Navbar color="dark" dark expand="sm" className="mb-5">
             <Container>
-                <NavbarBrand href="/">Foodie Dashboard</NavbarBrand>
+                <NavbarBrand href="/">FinAuto Dashboard</NavbarBrand>
                 <NavbarToggler onClick={this.toggle}/>
                 <Collapse isOpen={this.state.isOpen} navbar>
                 <Nav className="ml-auto" navbar>
                 <NavItem>
-                    <NavLink href="/kitchen">Kitchen</NavLink>
+                    <NavLink href="/kitchen">History</NavLink>
                 </NavItem>
                 <NavItem>
                     <NavLink href="/predict">Predict</NavLink>
                 </NavItem>
-                <NavItem>
+                {/* <NavItem>
                     <NavLink href="https://github.com/avneeshsinghal">Github</NavLink>
-                </NavItem>
+                </NavItem> */}
                 </Nav>
                 </Collapse>
                 </Container>
