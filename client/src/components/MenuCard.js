@@ -10,8 +10,8 @@ import { getMenuItems } from '../actions/menuActions';
 
 
 class MenuCard extends Component {
-//   componentDidMount(){
-//     this.props.getMenuItems();
+   componentDidMount(){
+     this.props.getMenuItems();
 //     const pusher = new Pusher('API_KEY', {
 //       cluster: 'CLUSTER',
 //       encrypted: true
@@ -21,7 +21,7 @@ class MenuCard extends Component {
 //       this.props.menuitem.menuitems = [...this.props.menuitem.menuitems,data.newItem];
 //      this.setState({state:this.state});   
 //     });
-// }
+ }
 
 onChange = (e) => {
   this.setState({
