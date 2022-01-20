@@ -7,9 +7,9 @@ import { predictItem } from '../actions/menuActions';
 import PropTypes from 'prop-types';
 class ShoppingList extends Component {
 
-    componentDidMount(){
-        this.props.getMenuItems();
-    }
+    // componentDidMount(){
+    //     this.props.getMenuItems();
+    // }
 
     onChange = (e) => {
         this.setState({
