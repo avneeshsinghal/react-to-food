@@ -12,9 +12,9 @@ import _ from 'lodash';
 
 class ItemTable extends Component {
 
-    // componentDidMount(prevProps){
-    //     this.props.getItems();
-    //     this.props.getMenuItems();
+     componentDidMount(prevProps){
+         this.props.getItems();
+         this.props.getMenuItems();
     //     const pusher = new Pusher('API_KEY', {
     //         cluster: 'CLUSTER',
     //         encrypted: true
@@ -31,7 +31,7 @@ class ItemTable extends Component {
     //         toast.warning("Item Removed");
     //         this.setState({ state: this.state });
     //       });
-    // }
+     }
 
     onCreateItem = (name,quantity,created_till_now) => {
          return ({
